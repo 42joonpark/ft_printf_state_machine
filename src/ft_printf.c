@@ -6,7 +6,7 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:59:22 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 19:57:22 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/09 20:44:04 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,38 @@ static int		get_flags(const char *str, va_list ap, ft_opt *opt)
 	return (str - t);
 }
 
+static int		prec_to_num(char c)
+{
+	static const char	*mapping = "csdiuxXp%";
+	int					idx;
+
+	idx = 0;
+	while (mapping[idx])
+	{
+		if (mapping[idx] == c)
+			return (idx);
+		++idx;
+	}
+	return (-1);
+}
+
 static int		ft_helper(const char *str, va_list ap)
 {
 	int			ret;
 	int			cnt;
+	int			p2n;
+	int			(*fp[PRECISION_NUMBER])(va_list, ft_opt *);
 	ft_opt		opt;
 
+	fp[PRECISION_C]				= print_c;
+	fp[PRECISION_S]				= print_s;
+	fp[PRECISION_D]				= print_d;
+	fp[PRECISION_I]				= print_d;
+	fp[PRECISION_U]				= print_u;
+	fp[PRECISION_X]				= print_x;
+	fp[PRECISION_XX]			= print_xx;
+	fp[PRECISION_P]				= print_p;
+	fp[PRECISION_PERCENTAGE]	= print_percentage;
 	ret = 0;
 	while (*str)
 	{
@@ -100,49 +126,14 @@ static int		ft_helper(const char *str, va_list ap)
 			return (-1);
 		}
 		str += cnt;
-		if (*str == 'c')
+		p2n = prec_to_num(*str);
+		if (p2n >= 0)
 		{
-			print_c(ap, &opt);
-			++str;
-		}
-		if (*str == 's')
-		{
-			print_s(ap, &opt);
-			++str;
-		}
-		if (*str == 'd' || *str == 'i')
-		{
-			print_d(ap, &opt);
-			++str;
-		}
-		if (*str == 'u')
-		{
-			print_u(ap, &opt);
-			++str;
-		}
-		if (*str == 'x')
-		{
-			print_x(ap, &opt);
-			++str;
-		}
-		if (*str == 'X')
-		{
-			print_xx(ap, &opt);
-			++str;
-		}
-		if (*str == 'p')
-		{
-			print_p(ap, &opt);
-			++str;
-		}
-		if (*str == '%')
-		{
-			print_percentage(&opt);
+			fp[p2n](ap, &opt);
 			++str;
 		}
 		ret += opt.tot;
 	}
-	//printf("RETURN: %d\n", ret);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:45:26 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 17:46:10 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/09 20:35:04 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int		print_u(va_list ap, ft_opt *format);
 int		print_p(va_list ap, ft_opt *format);
 int		print_x(va_list ap, ft_opt *format);
 int		print_xx(va_list ap, ft_opt *format);
-int		print_percentage(ft_opt *format);
+int		print_percentage(va_list ap, ft_opt *format);
 
 #endif

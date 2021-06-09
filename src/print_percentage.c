@@ -6,18 +6,20 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:55:12 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 18:55:27 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/09 20:34:51 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print_header.h"
 #include "utils.h"
 
-int		print_percentage(ft_opt *format)
+int		print_percentage(va_list ap, ft_opt *format)
 {
 	int			width;
 	char		val;
 
+	if (ap)
+		;
 	val = '%';
 	width = format->width;
 	if (format->hypen == 1)
