@@ -6,7 +6,7 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:59:22 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 20:44:04 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/09 21:01:30 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ static int		get_flags(const char *str, va_list ap, ft_opt *opt)
 	const char	*t;
 	int			state;
 	int			token;
-	int			prev_state;
 
 	t = str;
 	state = 0;
 	init_opt(opt);
 	while (*str)
 	{
-		prev_state = state;
 		token = get_token(*str);
 		state = get_state(state, token);
-		//printf("[%c, %d] %d -> %d\n", *str, token, prev_state, state);
 		if (state == 1)
 			write(1, str, 1);
 		if (state == 2)
@@ -73,9 +70,7 @@ static int		get_flags(const char *str, va_list ap, ft_opt *opt)
 		}
 		if (state == 7)
 			opt->length = va_arg(ap, int);
-		if (state == 8) // 현재 % 에 대한 것들은 다 읽은 거니까 종료해야지
-			break ;
-		if (state == 10)
+		if (state == 8 || state == 10) // 현재 % 에 대한 것들은 다 읽은 거니까 종료해야지
 			break ;
 		if (state == -1)
 			return (-1);
@@ -147,12 +142,3 @@ int		ft_printf(const char *str, ...)
 	va_end(ap);
 	return (res);
 }
-
-/*
-int		main()
-{
-	char		*str = "%.10d/";
-
-	return (0);
-}
-*/
