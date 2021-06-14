@@ -6,7 +6,7 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:45:26 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 20:35:04 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:07:17 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 
 int		print_c(va_list ap, ft_opt *format);
+int		print_c_state(va_list ap, ft_opt *format);
 int		print_s(va_list ap, ft_opt *format);
 int		print_d(va_list ap, ft_opt *format);
 int		print_i(va_list ap, ft_opt *format);

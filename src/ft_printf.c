@@ -6,7 +6,7 @@
 /*   By: joonpark <joonpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:59:22 by joonpark          #+#    #+#             */
-/*   Updated: 2021/06/09 21:01:30 by joonpark         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:07:41 by joonpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static int		ft_helper(const char *str, va_list ap)
 	int			(*fp[PRECISION_NUMBER])(va_list, ft_opt *);
 	ft_opt		opt;
 
-	fp[PRECISION_C]				= print_c;
+	fp[PRECISION_C]				= print_c_state;
 	fp[PRECISION_S]				= print_s;
 	fp[PRECISION_D]				= print_d;
 	fp[PRECISION_I]				= print_d;

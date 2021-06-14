@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 INCLUDE = -Iincludes/
 
@@ -11,13 +11,15 @@ SRC = src/ft_printf.c \
 	  src/ft_opt.c \
 	  src/utils.c \
 	  src/print_c.c \
+	  src/print_c_state.c \
 	  src/print_s.c \
 	  src/print_d.c \
 	  src/print_u.c \
 	  src/print_x.c \
 	  src/print_xx.c \
 	  src/print_p.c \
-	  src/print_percentage.c
+	  src/print_percentage.c \
+	  src/main.c
 
 OBJECTS = $(SRC:.c=.o)
 
@@ -28,6 +30,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJECTS)
 	ar rs $@ $^
+	#$(CC) $(CFLAGS) -o $@ $^
 
 clean:
 	rm -rf $(OBJECTS)
